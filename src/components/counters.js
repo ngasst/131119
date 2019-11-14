@@ -33,13 +33,6 @@ const mapDispatchToProps = dispatch => {
                 payload: null
             };
             dispatch(action);
-        },
-        removeCounter(id) {
-            const action = {
-                type: "REMOVE_COUNTER",
-                payload: id
-            };
-            dispatch(action);
         }
     };
 };
