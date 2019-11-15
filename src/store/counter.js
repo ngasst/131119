@@ -5,18 +5,20 @@ const initial = {
 export function countersReducer(state = initial, action) {
     switch (action.type) {
         case "ADD_COUNTER":
-            const counter = {
-                id: state.counters.length + 1,
-                value: 0
-            };
-            return { ...state, counters: [...state.counters, counter] };
-        case "REMOVE_COUNTER":
-            return {
-                ...state,
-                counters: state.counters.filter(
-                    counter => counter.id !== action.payload
-                )
-            };
+            let counter = {};
+            if(!state.counters[0]) {
+                counter = {
+                    id: state.counters.length + 1,
+                    value: 0
+                };
+                return { ...state, counters: [...state.counters, counter] };
+            } else {
+                counter = {
+                    id: state.counters[state.counters.length-1].id + 1,
+                    value: 0
+                }
+                return { ...state, counters: [...state.counters, counter] };
+            }
         case "INCREMENT":
             return {
                 ...state,
